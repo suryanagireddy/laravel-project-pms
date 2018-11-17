@@ -10,9 +10,10 @@
     {{--<p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>--}}
 </div>
 
-<div class="row" style="background: white; margin: 10px;">
+<div class="row  col-md-12 col-lg-12 col-sm-12" style="background: white; margin: 10px; ">
+    <a href="/projects/create/{{ $company->id }}" class="pull-right btn btn-default btn-sm" >Add Project</a>
     @foreach($company->projects as $project)
-    <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4">
         <h2>{{ $project->name }}</h2>
         <p class="text-danger">{{ $project->description }}</p>
         <p><a class="btn btn-primary" href="/projects/{{ $project->id }}" role="button">View project &raquo;</a></p>
@@ -30,8 +31,31 @@
         <h4>Actions</h4>
         <ol class="list-unstyled">
             <li><a href="/companies/{{$company ->id}}/edit">Edit</a></li>
-            <li><a href="#">Delete</a></li>
-            <li><a href="#">Add new user</a></li>
+            <li><a href="/projects/create/{{ $company->id }}">Add Project</a></li>
+            <li><a href="/companies">List of Companies</a></li>
+            <li><a href="/company/create">Create new Company</a></li>
+
+            <br/>
+            <li>
+                <a
+                        href="#"
+                        onclick="
+                  var result = confirm('Are you sure you wish to delete this Company?');
+                      if( result ){
+                              event.preventDefault();
+                              document.getElementById('delete-form').submit();
+                      }
+                          "
+                >
+                    Delete
+                </a>
+
+                <form id="delete-form" action="{{ route('companies.destroy',[$company->id]) }}"
+                      method="POST" style="display: none;">
+                    <input type="hidden" name="_method" value="delete">
+                    {{ csrf_field() }}
+                </form>
+            </li>
         </ol>
     </div>
     <div class="sidebar-module">
