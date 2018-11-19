@@ -7,7 +7,6 @@ use App\Company;
 use App\ProjectUser;
 use App\User;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
