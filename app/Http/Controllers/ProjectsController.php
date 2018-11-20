@@ -38,21 +38,33 @@ class ProjectsController extends Controller
 
             $user = User::where('email', $request->input('email'))->first(); //single record
 
+            if(!$user){
+                return redirect()->route('projects.show',['project'=>$project->id])
+                    ->with('errors' ,  $request->input('email').' is not a registered member');
+
+            }
+
             //check if user is already added to the project
             $projectUser = ProjectUser::where('user_id',$user->id)
                 ->where('project_id',$project->id)
                 ->first();
 
+
+
             if($projectUser){
                 //if user already exists, exit
-                return response()->json(['success' ,  $request->input('email').' is already a member of this project']);
+                return redirect()->route('projects.show',['project'=>$project->id])
+                    ->with('success' ,  $request->input('email').' is already a member of this project');
+                //return response()->json(['success' ,  $request->input('email').' is already a member of this project']);
             }
 
             if($user && $project){
 
                 $project->users()->attach($user->id);
+                return redirect()->route('projects.show',['project'=>$project->id])
+                    ->with('success' ,  $request->input('email').' was added to the project successfully');
 
-                return response()->json(['success' ,  $request->input('email').' was added to the project successfully']);
+                //return response()->json(['success' ,  $request->input('email').' was added to the project successfully']);
             }
 
         }

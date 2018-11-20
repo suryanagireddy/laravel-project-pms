@@ -30,24 +30,19 @@
     <div class="sidebar-module">
         <h4>Actions</h4>
         <ol class="list-unstyled">
-            <li><a href="/companies/{{$company ->id}}/edit">Edit</a></li>
-            <li><a href="/projects/create/{{ $company->id }}">Add Project</a></li>
-            <li><a href="/companies">List of Companies</a></li>
-            <li><a href="/company/create">Create new Company</a></li>
+            <li><a href="/companies/{{$company ->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i>Edit</a></li>
+            <li><a href="/projects/create/{{ $company->id }}"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add Project</a></li>
+            <li><a href="/companies"><i class="fa fa-building" aria-hidden="true"></i>List of Companies</a></li>
+            {{--<li><a href="/company/create">Create new Company</a></li>--}}
 
             <br/>
             <li>
-                <a
-                        href="#"
-                        onclick="
-                  var result = confirm('Are you sure you wish to delete this Company?');
+                <i class="fa fa-power-off" aria-hidden="true"></i>
+                <a href="#" onclick=" var result = confirm('Are you sure you wish to delete this Company?');
                       if( result ){
                               event.preventDefault();
                               document.getElementById('delete-form').submit();
-                      }
-                          "
-                >
-                    Delete
+                      }">Delete
                 </a>
 
                 <form id="delete-form" action="{{ route('companies.destroy',[$company->id]) }}"
@@ -58,12 +53,12 @@
             </li>
         </ol>
     </div>
-    <div class="sidebar-module">
-        <h4>Members</h4>
-        <ol class="list-unstyled">
-            <li><a href="#">March 2014</a></li>
-        </ol>
-    </div>
+    {{--<div class="sidebar-module">--}}
+        {{--<h4>Members</h4>--}}
+        {{--<ol class="list-unstyled">--}}
+            {{--<li><a href="#">March 2014</a></li>--}}
+        {{--</ol>--}}
+    {{--</div>--}}
 </div>
 
 @endsection

@@ -6,7 +6,7 @@
     	    <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-comment"></span> 
+                        <i class="fa fa-comments" aria-hidden="true"></i> 
                         Recent Comments
                     </h3>
                 </div>
@@ -23,7 +23,7 @@
                                     <small> 
                                     
                                     <a href="users/{{$comment->user->id}} " > {{ $comment->user->first_name}} {{ $comment->user->last_name}}
-                               -  {{ $comment->user->email}} </a> 
+                               -  {{ $comment->user->email}} </a>
                                <br>
                                         commented on {{ $comment->created_at}}
                                     </small>

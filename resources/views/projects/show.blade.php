@@ -61,10 +61,10 @@
             <h4>Actions</h4>
             <ol class="list-unstyled">
               <li><a href="/projects/{{ $project->id }}/edit">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+              <i class="fa fa-edit" aria-hidden="true"></i>
               Edit</a></li>
               <li><a href="/project/create"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create new project</a></li>
-              <li><a href="/projects"><i class="fa fa-user-o" aria-hidden="true"></i> My projects</a></li>
+              <li><a href="/projects"><i class="fa fa-briefcase" aria-hidden="true"></i></i> My projects</a></li>
             
             <br/>
 
@@ -106,7 +106,7 @@
 
             <br/>
 
-            <h4>Team Members</h4>
+            <h4>Project Members</h4>
             <ol class="list-unstyled" id="member-list">
             @foreach($project->users as $user)
               <li><a href="#"> {{$user->email}} </a> </li>
@@ -119,52 +119,45 @@
 
     @endsection
 
-    @section('jqueryScript')
-                      <script type="text/javascript">
-                      
-                            $('#addMember').on('click',function(e){
-                              e.preventDefault(); //prevent the form from auto submit
+    {{--@section('jqueryScript')--}}
+                      {{--<script type="text/javascript">--}}
 
-                            //   $.ajaxSetup({
-                            //     headers: {
-                            //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                            //     }
-                            // });
+                            {{--$('#addMember').on('click',function(e){--}}
+                              {{--e.preventDefault(); //prevent the form from auto submit--}}
 
+                            {{--var formData = {--}}
+                              {{--'project_id' : $('#project_id').val(),--}}
+                              {{--'email' : $('#email').val(),--}}
+                              {{--'_token': $('input[name=_token]').val(),--}}
+                            {{--}--}}
 
-                            var formData = {
-                              'project_id' : $('#project_id').val(),
-                              'email' : $('#email').val(),
-                              '_token': $('input[name=_token]').val(),
-                            }
+                            {{--var url = 'projects/adduser';--}}
 
-                            var url = 'projects/adduser';
+                            {{--$.ajax({--}}
+                              {{--type: 'post',--}}
+                              {{--url: "{{ URL::route('projects.adduser') }}",--}}
+                              {{--data : formData,--}}
+                              {{--dataType : 'json',--}}
+                              {{--success : function(data){--}}
 
-                            $.ajax({
-                              type: 'post',
-                              url: "{{ URL::route('projects.adduser') }}",
-                              data : formData,
-                              dataType : 'json',
-                              success : function(data){
+                                    {{--var emailField = $('#email').val();--}}
 
-                                    var emailField = $('#email').val();
-                                  
-                                  $('#member-list').prepend('<li><a href="#">'+ emailField +'</a> </li>');
-                                  $('#email').val('');
-                              },
-                              error: function(data){
-                                //do something with data
-                                console.log("error sending ajax request" + data);
-                              }
-                            });
-
-                             
-                            });
-
-                      </script>
+                                  {{--$('#member-list').prepend('<li><a href="#">'+ emailField +'</a> </li>');--}}
+                                  {{--$('#email').val('');--}}
+                              {{--},--}}
+                              {{--error: function(data){--}}
+                                {{--//do something with data--}}
+                                {{--console.log("error sending ajax request" + data);--}}
+                              {{--}--}}
+                            {{--});--}}
 
 
-@endsection
+                            {{--});--}}
+
+                      {{--</script>--}}
+
+
+{{--@endsection--}}
 
 
 
